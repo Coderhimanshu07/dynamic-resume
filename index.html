@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic content</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      font-family: "Poppins", sans-serif;
+    }
+
+    #outer_div {
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #inner_div {
+      background: aliceblue;
+      padding: 30px;
+      box-shadow: 3px 3px 8px gray;
+      border-radius: 20px;
+      border: 2px solid #e3e3e3;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    /* Image */
+    #img_container {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      overflow: hidden;
+      border-radius: 50%;
+      margin: auto;
+    }
+
+    /* Profile & Buttons Section */
+    #text1 h3 {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #links {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #links button {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    #links button:hover {
+      color: white;
+      background-color: rgb(13, 202, 240);
+      transform: translateY(-2px);
+    }
+
+    #links .active {
+      background-color: rgb(13, 202, 240);
+      color: white;
+      font-weight: 700;
+      transform: scale(1.02);
+    }
+
+    #text2 h3 {
+      font-size: 40px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Project Cards */
+    .project-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-color: #fff;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card h5 {
+      font-weight: bold;
+    }
+
+    /* Skill Cards */
+    .skill-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-card i {
+      font-size: 40px;
+      color: rgb(13, 202, 240);
+      margin-bottom: 10px;
+    }
+
+    .skill-card p {
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 992px) {
+      #text2 h3 {
+        font-size: 32px;
+      }
+
+      #links button {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #outer_div {
+        padding: 10px;
+      }
+
+      #inner_div {
+        padding: 20px;
+      }
+
+      .row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #img_container {
+        width: 180px;
+        height: 180px;
+      }
+
+      #links {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+      }
+
+      #links button {
+        width: 90%;
+        font-size: 16px;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      #text2 h3 {
+        font-size: 28px;
+      }
+
+      .skill-card i {
+        font-size: 35px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #img_container {
+        width: 150px;
+        height: 150px;
+      }
+
+      #text2 h3 {
+        font-size: 25px;
+      }
+
+      #links button {
+        width: 100%;
+        font-size: 15px;
+      }
+
+      .skill-card p {
+        font-size: 14px;
+      }
+
+      .project-card img {
+        height: 150px;
+      }
+    }
+
+    /* Skills & Projects responsive flex */
+    @media (max-width: 768px) {
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .skills-container .skill-card {
+        flex: 1 1 45%;
+        text-align: center;
+      }
+
+      .projects-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .projects-container .project-card {
+        width: 90%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid mx-auto" id="outer_div">
+    <div class="container" id="inner_div">
+      <div class="row">
+        <!-- Profile Section -->
+        <div class="col-lg-4 col-md-5 col-sm-12 text-center mb-4 mb-md-0">
+          <div id="img_container">
+            <img src="./img/image.png" alt="Profile Photo" width="100%" />
+          </div>
+
+          <div id="text1" class="text-center mt-3">
+            <h3>Full Stack Developer</h3>
+          </div>
+
+          <div id="links">
+            <button class="btn active" data-page="About">About</button>
+            <button class="btn" data-page="Skills">Skills</button>
+            <button class="btn" data-page="Projects">Projects</button>
+            <button class="btn" data-page="Contact">Contact</button>
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="col-lg-8 col-md-7 col-sm-12 px-3">
+          <div id="text2">
+            <h3 class="pb-3" id="title">About Me</h3>
+            <div id="htmlCode" class="text-muted">
+              <span style="font-weight: bold">Full-Stack / MERN-Stack</span>
+              Developer passionate about crafting elegant and efficient
+              solutions to complex problems. Proficient in Backend (MySQL,
+              PhP, MongoDB, MariaDB, etc). Eager to contribute to innovative
+              projects and continuously expand my skill set.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const data = {
+        About: {
+          title: "About Me",
+          description: `<p><b>Full-stack / MERN-Stack</b> Developer passionate about crafting elegant and efficient solutions to complex problems.
+          Proficient in Backend (MySQL, PhP, MongoDB, MariaDB, etc). Eager to contribute to innovative projects and continuously expand my skill set.</p>`,
+        },
+
+        Skills: {
+          title: "My Skills",
+          description: `<div class="row g-4">
+            ${["html5", "css3-alt", "js", "react", "node-js", "python", "github", "bootstrap"]
+              .map(
+                (skill) => `<div class="col-6 col-md-3 text-center">
+                <div class="skill-card">
+                  <i class="fab fa-${skill}"></i>
+                  <p>${skill.toUpperCase()}</p>
+                </div>
+              </div>`
+              )
+              .join("")}
+          </div>`,
+        },
+
+        Projects: {
+          title: "My Projects",
+          description: `<div class="row g-4">
+            ${[
+              { name: "To Do list", img: "./img/to_do.avif", link: "https://coderhimanshu07.github.io/To-do-list/" },
+              { name: "Popup Forms", img: "./img/popup_form.jpg", link: "https://coderhimanshu07.github.io/Projects-Popup-form/" },
+              { name: "Calculator", img: "./img/calculator.avif", link: "https://coderhimanshu07.github.io/Projects-calculator/" },
+              { name: "Weekly Info", img: "./img/week.avif", link: "https://coderhimanshu07.github.io/Projects-week_info/" }
+            ]
+              .map(
+                (project) => `<div class="col-6 col-md-3 text-center">
+                <div class="project-card">
+                  <img src="${project.img}" alt="${project.name}" class="img-fluid mb-2">
+                  <h5>${project.name}</h5>
+                  <a href="${project.link}" target="_blank">View Project</a>
+                </div>
+              </div>`
+              )
+              .join("")}
+          </div>`,
+        },
+
+        Contact: {
+          title: "Contact Me",
+          description: `<form class="mt-3" id="main_form">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">First Name*</label>
+                <input type="text" class="form-control fName" placeholder="First name" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Last Name*</label>
+                <input type="text" class="form-control lName" placeholder="Last name" required />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone*</label>
+              <input type="tel" class="form-control num" placeholder="Phone number" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email*</label>
+              <input type="email" class="form-control email" placeholder="Enter your email" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control message" rows="4" placeholder="Write your message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-info text-white w-100">Submit</button>
+          </form>`,
+        },
+      };
+
+      const listItems = document.querySelectorAll(".btn");
+      const title = document.getElementById("title");
+      const htmlContainer = document.getElementById("htmlCode");
+
+      listItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const page = item.getAttribute("data-page");
+          title.textContent = data[page].title;
+          htmlContainer.innerHTML = data[page].description;
+
+          listItems.forEach((i) => i.classList.remove("active"));
+          item.classList.add("active");
+
+          if (page === "Contact") attachContactListener();
+        });
+      });
+
+      function attachContactListener() {
+        const form = document.getElementById("main_form");
+        if (!form || form.dataset.listenerAttached === "true") return;
+        form.dataset.listenerAttached = "true";
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const fName = document.querySelector(".fName")?.value.trim() ?? "";
+          const lName = document.querySelector(".lName")?.value.trim() ?? "";
+          const num = document.querySelector(".num")?.value.trim() ?? "";
+          const email = document.querySelector(".email")?.value.trim() ?? "";
+          const msg = document.querySelector(".message")?.value.trim() ?? "";
+
+          if (!fName || !lName || !num || !email) {
+            alert("⚠️ Please fill in all required fields.");
+            return;
+          }
+
+          const yourNumber = "917291933500"; // WhatsApp number with country code
+
+          const message = `Hello, my name is ${fName} ${lName}.
+Here are my details:
+📞 Phone: ${num}
+📧 Email: ${email}
+
+Message:
+${msg || "(No message provided)"}
+
+Looking forward to connecting with you!`;
+
+          const whatsappURL = `https://wa.me/${yourNumber}?text=${encodeURIComponent(message)}`;
+          window.open(whatsappURL, "_blank");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
